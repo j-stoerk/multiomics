@@ -217,6 +217,16 @@ def confounding():
                 causal_effect=0)
 
 
+def screening():
+    # A constructed candidate population, not a clinical success-rate estimate.
+    n, prevalence, sensitivity = 10000, 0.01, 0.9
+    true_positives = n * prevalence * sensitivity
+    return [dict(specificity=sp, true_positives=true_positives,
+                 false_positives=n*(1-prevalence)*(1-sp),
+                 precision=true_positives/(true_positives+n*(1-prevalence)*(1-sp)))
+            for sp in (0.95, 0.99)]
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', type=Path)
@@ -229,7 +239,7 @@ def main():
         cases.append(dict(name=case['name'], expected=case['expected'], trace=trace))
     result = dict(kind='synthetic, not model responses or clinical validation',
                   selection=selection_simulation(), compression=compression(),
-                  confounding=confounding(), fixtures=cases)
+                  confounding=confounding(), screening=screening(), fixtures=cases)
     text = json.dumps(result, indent=2, allow_nan=False) + '\n'
     if args.output:
         args.output.parent.mkdir(parents=True, exist_ok=True)

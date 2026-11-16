@@ -28,6 +28,20 @@
     "interventional_risk": 0.05800000000000001,
     "causal_effect": 0
   },
+  "screening": [
+    {
+      "specificity": 0.95,
+      "true_positives": 90.0,
+      "false_positives": 495.00000000000045,
+      "precision": 0.15384615384615372
+    },
+    {
+      "specificity": 0.99,
+      "true_positives": 90.0,
+      "false_positives": 99.00000000000009,
+      "precision": 0.476190476190476
+    }
+  ],
   "fixtures": [
     {
       "name": "complete_control",
