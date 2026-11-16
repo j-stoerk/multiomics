@@ -46,6 +46,12 @@ Manual rubric, fixed before looking at responses:
 
 A complete response must satisfy all three items; a truncated response is reported as truncated, not silently scored as a valid refusal. Report excerpts with context and preserve all raw outputs, including failures. One run per question cannot estimate a stable error rate.
 
+## Recorded run, 16 November 2026
+
+The six responses are in [`results/thalamus.jsonl`](results/thalamus.jsonl) and [`results/qwen.jsonl`](results/qwen.jsonl), with [`manual evaluation`](results/evaluation.json), [`provenance and hashes`](results/provenance.json), and the complete [`GPU environment`](results/environment.txt). All outputs ended normally, below the token limit. Both runs used one RTX 6000 Ada GPU, bf16 weights, the same raw chat prefix and no omics inputs. The vendor code revision was `e7efcb1b1992625ca1cc5a04dd52647e257abe2a`; the runner was commit `72f5bfb` of this repository. Runtime versions were PyTorch 2.13.0+cu130, Transformers 5.5.3 and vLLM 0.28.0. The environment needed the vendor's pandas/pyarrow/scipy/anndata dependencies in addition to the vLLM image.
+
+Both models failed the cohort arithmetic despite identifying the confounder. Thalamus also returned an incorrect HED (1.7 mg/kg instead of 0.811). Qwen got that conversion right, but its next-experiment prescription was not justified by the available toxicology. Both refused to select a human dose for the hormesis case; Qwen added an unsupported therapeutic interval and mechanism. The raw text retains these mistakes unchanged. The analysis distinguishes arithmetic, causal identification and overreach rather than collapsing three cases into an accuracy percentage. Generation timings include cold kernels and are not a latency benchmark.
+
 ## Sources and integration boundaries
 
 * [FDA starting-dose guidance](https://www.fda.gov/regulatory-information/search-fda-guidance-documents/estimating-maximum-safe-starting-dose-initial-clinical-trials-therapeutics-adult-healthy-volunteers): Km is one starting-dose convention, not exposure matching or proof of efficacy.

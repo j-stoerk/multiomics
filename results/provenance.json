@@ -1,0 +1,18 @@
+{
+  "run_date": "2026-11-16",
+  "runner_commit": "72f5bfb",
+  "vendor_code_revision": "e7efcb1b1992625ca1cc5a04dd52647e257abe2a",
+  "gpu": "NVIDIA RTX 6000 Ada Generation, 48 GB",
+  "engine": "vLLM 0.28.0, bf16, eager mode, one GPU",
+  "thinking": false,
+  "omics_profiles": 0,
+  "repeats_per_model_per_prompt": 1,
+  "prompt_protocol": "Identical raw serialized user messages with an empty think prefix; no system message, tools or retrieval",
+  "sha256": {
+    "results/thalamus.jsonl": "8e19d57ff59c716083abad1ea62cad49e2ace54daf37e8167db787d40cbd12cd",
+    "results/qwen.jsonl": "4a9ae2cfd8f40f5ed5222d4f5b23c8323050112e3365466218f8bde201084f8c",
+    "results/environment.txt": "845a16a80b7693696cd4cd5d71b3bcbcfdc983e0eb7e979b94821b30cc09e0b0",
+    "prompts.json": "7e900a1bd880db3d2e6a2979b7913bc1a49799141164c7d1a65fe30aec745bb7",
+    "gpu_probes.py": "368bfa31bb430e07487a605e90fda12153c985c6e807cbb4934384490139aa99"
+  }
+}

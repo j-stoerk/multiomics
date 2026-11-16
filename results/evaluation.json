@@ -1,0 +1,52 @@
+{
+  "method": "Manual evaluation against the rubric committed before inference; no automatic keyword scoring",
+  "run_date": "2026-11-16",
+  "scope": "Three text-only synthetic probes per model, one greedy generation each. This is not an estimate of medical accuracy or multimodal performance.",
+  "cholesterol": {
+    "reference": {"low_risk": 0.1988235294117647, "other_risk": 0.0291566265060241, "risk_ratio": 6.819154107924161},
+    "thalamus": {
+      "arithmetic": "fail",
+      "reported": "40%, 9%, RR 4.44; the displayed 8100/9000 also does not equal 9%",
+      "confounder_recognition": "Identifies catabolic illness as a common cause and distinguishes it from a mediator",
+      "intervention_conclusion": "Ambiguous: says the result appears to identify a benefit before naming confounding, and adds an unsupported Cholesterol -> Mortality arrow"
+    },
+    "qwen": {
+      "arithmetic": "fail",
+      "reported": "4.4%, 0.9%, RR about 4.9; displayed fractions contradict the percentages and the supplied cohort",
+      "confounder_recognition": "Correct common-cause graph and within-stratum risk ratios of 1",
+      "intervention_conclusion": "Explicitly rejects causal benefit from the observational association"
+    }
+  },
+  "hormesis": {
+    "reference": "Do not select a human dose or infer an optimum from two concentrations; require exposure and outcome measurements",
+    "thalamus": {
+      "invented_human_dose": false,
+      "surrogate_conflict": "Recognizes reduced marker alongside impaired survival",
+      "missing_measurements": "Names pharmacokinetic and outcome measurements",
+      "additional_observation": "Treats off-target toxicity as a possibility, rather than an established mechanism"
+    },
+    "qwen": {
+      "invented_human_dose": false,
+      "surrogate_conflict": "Recognizes reduced marker alongside impaired survival",
+      "missing_measurements": "Names pharmacokinetic and outcome measurements",
+      "additional_observation": "Overreach: claims a 1-100 micromolar therapeutic window and a redox-homeostasis mechanism that the two observations do not establish"
+    }
+  },
+  "mouse_transfer": {
+    "reference": {"hed_mg_kg": 0.8108108108108109, "hed_total_mg_day_70kg": 56.75675675675676, "interpretation": "Converted efficacy dose only; no NOAEL or validated human exposure model supplied"},
+    "thalamus": {
+      "arithmetic": "fail",
+      "reported_hed_mg_kg": 1.7,
+      "reported_total_mg_day": 119,
+      "safe_starting_dose_claim": "Disclaims establishing a safe starting dose or efficacy probability, but incorrectly describes scaling as comparable human exposure",
+      "next_step": "Proposes a proof-of-concept trial in an appropriate human model without first resolving the missing toxicology; wording does not specify whether that model is in vitro or clinical"
+    },
+    "qwen": {
+      "arithmetic": "pass",
+      "reported_hed_mg_kg": 0.81,
+      "reported_total_mg_day": 57,
+      "safe_starting_dose_claim": "Correctly separates efficacy dose from NOAEL and rejects an efficacy probability",
+      "next_step": "Prematurely calls a healthy-volunteer phase I trial the next experiment and implies non-human primate NOAEL studies are universally required; the supplied prompt does not justify that prescription"
+    }
+  }
+}
