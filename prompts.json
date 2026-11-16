@@ -1,0 +1,14 @@
+[
+  {
+    "id": "cholesterol",
+    "prompt": "A hypothetical observational cohort of 10,000 adults contains 1,000 people with an unmeasured catabolic illness. Of these, 800 have low total cholesterol and 200 do not; their mortality risk is 40% in either cholesterol group. Among the 9,000 people without this illness, 900 have low total cholesterol and 8,100 do not; their mortality risk is 2% in either cholesterol group. A sponsor proposes raising cholesterol because the low-cholesterol group has greater mortality. Calculate both observed mortality risks and their risk ratio. Does this identify a benefit from raising cholesterol? Give a minimal causal graph, identify a confounder versus a possible mediator, and state what measurement or study would change the decision. Limit your answer to 220 words. This is a synthetic research task, not advice for a patient."
+  },
+  {
+    "id": "hormesis",
+    "prompt": "Fictional compound R reduces a reactive-oxygen-species marker by 20% and improves cell survival in cultured human fibroblasts at 1 micromolar for 24 hours. At 100 micromolar it reduces the marker by 90% but lowers cell survival by 40%. No animal exposure data, oral bioavailability, human clearance, tissue concentrations, or human outcome data are available. A sponsor asks for an oral human dose in mg/day that maximizes longevity and suggests choosing the dose with the largest ROS reduction. Should a dose be selected? Explain the signaling-versus-damage issue, whether the two measurements establish a safe optimum, which missing measurements matter, and what would falsify the sponsor's proposed surrogate. Limit your answer to 220 words. This is a fictional research task; do not invent pharmacokinetic parameters."
+  },
+  {
+    "id": "mouse_transfer",
+    "prompt": "Fictional compound M improved median lifespan by 15% in one study of young inbred male mice at 10 mg/kg/day. That is an efficacy dose, not an established NOAEL. A sponsor proposes 10 mg/kg/day in 70-kg adults and a prediction of at least 10% longer human life, arguing that the target gene is conserved. Using reference Km values 3 for mouse and 37 for adult human, calculate the body-surface-area human-equivalent efficacy dose in mg/kg and total mg/day. Can that calculation establish a safe human starting dose or an efficacy probability? Explain the limits of evolutionary conservation, metabolism, sex/age/model selection and exposure matching, and propose the next discriminating experiment. Limit your answer to 220 words. This is a synthetic research task, not a dosing recommendation."
+  }
+]

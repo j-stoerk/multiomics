@@ -1,0 +1,198 @@
+{
+  "kind": "synthetic, not model responses or clinical validation",
+  "selection": {
+    "seed": 15112026,
+    "experiments": 100000,
+    "published": 70978,
+    "positive_fraction": 0.8966017639268505,
+    "mean_reported": 0.44616830298746174,
+    "mean_true_selected": 0.2649582491610427,
+    "correction_fraction": 0.4061473049812582,
+    "shrinkage_slope": 0.2647058823529412
+  },
+  "compression": {
+    "measurements": 23030,
+    "retained_coordinates": 300,
+    "raw_bits": 368480,
+    "token_upper_bits": 4982.892142331044,
+    "isotropic_retained_fraction": 0.013026487190620929,
+    "low_rank_retained_fraction": 0.7768698398515701,
+    "assumptions": "16-bit measurement quantization; 100k token vocabulary; diagonal covariance with eigenvalues exp(-i/200) or equal eigenvalues. Token count is not a variance estimate."
+  },
+  "confounding": {
+    "low_group": 1700,
+    "low_deaths": 338,
+    "other_group": 8300,
+    "other_deaths": 242,
+    "observational_rr": 6.819154107924161,
+    "interventional_risk": 0.05800000000000001,
+    "causal_effect": 0
+  },
+  "fixtures": [
+    {
+      "name": "complete_control",
+      "expected": "pass",
+      "trace": [
+        {
+          "stage": "exposure",
+          "status": "pass",
+          "reason": "Within the two declared toy bounds"
+        },
+        {
+          "stage": "causality",
+          "status": "pass",
+          "reason": "Adjustment satisfies the declared back-door criterion"
+        },
+        {
+          "stage": "coverage",
+          "status": "pass",
+          "reason": "Critical measurements present; declared coverage >= 80%"
+        }
+      ]
+    },
+    {
+      "name": "dose_arithmetic_error",
+      "expected": "exposure",
+      "trace": [
+        {
+          "stage": "exposure",
+          "status": "reject",
+          "reason": "Exceeds declared HED / safety-factor ceiling"
+        }
+      ]
+    },
+    {
+      "name": "exposure_limit_error",
+      "expected": "exposure",
+      "trace": [
+        {
+          "stage": "exposure",
+          "status": "reject",
+          "reason": "Exceeds declared Cmax ceiling"
+        }
+      ]
+    },
+    {
+      "name": "oral_route_without_model",
+      "expected": "exposure",
+      "trace": [
+        {
+          "stage": "exposure",
+          "status": "abstain",
+          "reason": "Exposure model does not cover this route or schedule"
+        }
+      ]
+    },
+    {
+      "name": "unadjusted_common_cause",
+      "expected": "causality",
+      "trace": [
+        {
+          "stage": "exposure",
+          "status": "pass",
+          "reason": "Within the two declared toy bounds"
+        },
+        {
+          "stage": "causality",
+          "status": "reject",
+          "reason": "Unblocked back-door path in the declared DAG"
+        }
+      ]
+    },
+    {
+      "name": "mediator_adjustment",
+      "expected": "causality",
+      "trace": [
+        {
+          "stage": "exposure",
+          "status": "pass",
+          "reason": "Within the two declared toy bounds"
+        },
+        {
+          "stage": "causality",
+          "status": "reject",
+          "reason": "Total-effect adjustment includes an exposure descendant"
+        }
+      ]
+    },
+    {
+      "name": "hidden_common_cause",
+      "expected": "causality",
+      "trace": [
+        {
+          "stage": "exposure",
+          "status": "pass",
+          "reason": "Within the two declared toy bounds"
+        },
+        {
+          "stage": "causality",
+          "status": "abstain",
+          "reason": "Adjustment requires an unmeasured variable"
+        }
+      ]
+    },
+    {
+      "name": "renal_measurement_missing",
+      "expected": "coverage",
+      "trace": [
+        {
+          "stage": "exposure",
+          "status": "pass",
+          "reason": "Within the two declared toy bounds"
+        },
+        {
+          "stage": "causality",
+          "status": "pass",
+          "reason": "Adjustment satisfies the declared back-door criterion"
+        },
+        {
+          "stage": "coverage",
+          "status": "abstain",
+          "reason": "Insufficient sensor data"
+        }
+      ]
+    },
+    {
+      "name": "low_coverage",
+      "expected": "coverage",
+      "trace": [
+        {
+          "stage": "exposure",
+          "status": "pass",
+          "reason": "Within the two declared toy bounds"
+        },
+        {
+          "stage": "causality",
+          "status": "pass",
+          "reason": "Adjustment satisfies the declared back-door criterion"
+        },
+        {
+          "stage": "coverage",
+          "status": "abstain",
+          "reason": "Insufficient sensor data"
+        }
+      ]
+    },
+    {
+      "name": "mouse_assay_shift",
+      "expected": "coverage",
+      "trace": [
+        {
+          "stage": "exposure",
+          "status": "pass",
+          "reason": "Within the two declared toy bounds"
+        },
+        {
+          "stage": "causality",
+          "status": "pass",
+          "reason": "Adjustment satisfies the declared back-door criterion"
+        },
+        {
+          "stage": "coverage",
+          "status": "abstain",
+          "reason": "Insufficient sensor data"
+        }
+      ]
+    }
+  ]
+}
